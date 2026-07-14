@@ -1,0 +1,30 @@
+# agentsync configuration for the "basic" example.
+# Docs: https://github.com/kero168/agentsync#configuration
+version: 1
+
+project:
+  name: acme-widgets
+  description: "Coding guidelines shared by every AI assistant working on Acme Widgets."
+
+sources:
+  rulesDir: rules
+
+rulesOrder:
+  - 00-overview.md
+  - 10-coding-style.md
+  - 20-testing.md
+  - 30-git-workflow.md
+
+targets:
+  claude:
+    enabled: true
+    output: CLAUDE.md
+  agents:
+    enabled: true
+    output: AGENTS.md
+  cursor:
+    enabled: true
+    output: .cursor/rules/agentsync.mdc
+  gemini:
+    enabled: true
+    output: GEMINI.md
