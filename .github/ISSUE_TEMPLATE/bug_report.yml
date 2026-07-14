@@ -1,0 +1,66 @@
+name: Bug report
+description: Something isn't working the way it should.
+title: '[bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill in as much
+        of this as you can — a minimal reproduction is the single most
+        useful thing you can provide.
+
+  - type: input
+    id: version
+    attributes:
+      label: agentsync version
+      description: Output of `agentsync --version` (or `npx agentsync-cli --version`)
+      placeholder: '0.1.0'
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js version
+      description: Output of `node --version`
+      placeholder: 'v20.14.0'
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect to happen, and what happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: >-
+        A minimal `agentsync.config.yaml` + `rules/` setup and the exact
+        command you ran. If possible, link a minimal repo or paste the
+        files inline.
+      render: yaml
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output
+      description: Full CLI output, including any error messages.
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and didn't find a duplicate.
+          required: true
+        - label: I'm running a supported Node.js version (>= 20).
+          required: true

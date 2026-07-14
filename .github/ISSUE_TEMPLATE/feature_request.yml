@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an idea, a new target adapter, or a config option.
+title: '[feature]: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, please check [ROADMAP.md](https://github.com/kero168/agentsync/blob/main/ROADMAP.md) —
+        your idea might already be planned, and the roadmap explains what's
+        explicitly out of scope (e.g. network calls, two-way sync).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation you're in, not just the feature you want.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: >-
+        What would you want `agentsync.config.yaml`, the CLI, or a new
+        adapter to look like? Sketch it out if useful.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds you're using today, or other tools you compared against.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and didn't find a duplicate.
+          required: true
