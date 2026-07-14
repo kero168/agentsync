@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use agentsync in your project, please consider citing it as below."
+title: "agentsync"
+abstract: >-
+  A CLI that generates and keeps per-tool AI coding assistant configuration
+  files (CLAUDE.md, AGENTS.md, Cursor rules, GEMINI.md) in sync from a single
+  source of truth.
+authors:
+  - given-names: kero168
+type: software
+repository-code: "https://github.com/kero168/agentsync"
+license: MIT
+version: 0.1.0
+date-released: "2026-07-14"
+keywords:
+  - cli
+  - developer-tools
+  - ai-agents
+  - configuration-management

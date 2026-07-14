@@ -1,0 +1,74 @@
+{
+  "name": "agentsync-cli",
+  "version": "0.1.0",
+  "description": "Single source of truth for AI coding assistant instructions. Generate and keep CLAUDE.md, AGENTS.md, Cursor rules, and GEMINI.md in sync from one config and one rules/ directory.",
+  "keywords": [
+    "ai",
+    "cli",
+    "agents",
+    "agents.md",
+    "claude",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "gemini-cli",
+    "developer-tools",
+    "config-sync",
+    "devtools",
+    "monorepo"
+  ],
+  "homepage": "https://github.com/kero168/agentsync#readme",
+  "bugs": {
+    "url": "https://github.com/kero168/agentsync/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kero168/agentsync.git"
+  },
+  "license": "MIT",
+  "author": "kero168",
+  "type": "module",
+  "bin": {
+    "agentsync": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.ja.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test",
+    "agentsync": "node ./dist/cli.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "yaml": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
