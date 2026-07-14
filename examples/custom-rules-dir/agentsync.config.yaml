@@ -1,0 +1,28 @@
+# agentsync configuration for the "custom-rules-dir" example.
+# Shows: a non-default rules directory, a partial rulesOrder, and
+# generating only a subset of targets (Claude Code + AGENTS.md).
+version: 1
+
+project:
+  name: internal-tools
+  description: "Shared guidelines for the internal-tools monorepo."
+
+sources:
+  rulesDir: guidelines
+
+rulesOrder:
+  - overview.md
+
+targets:
+  claude:
+    enabled: true
+    output: CLAUDE.md
+  agents:
+    enabled: true
+    output: AGENTS.md
+  cursor:
+    enabled: false
+    output: .cursor/rules/agentsync.mdc
+  gemini:
+    enabled: false
+    output: GEMINI.md
