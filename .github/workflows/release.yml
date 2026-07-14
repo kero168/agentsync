@@ -1,0 +1,57 @@
+name: Release
+
+# Triggered by publishing a GitHub Release (tag vX.Y.Z). Publishes to npm
+# using OIDC "trusted publishing" -- no long-lived NPM_TOKEN secret is
+# stored in this repository. This requires the package to be configured
+# with this repo + workflow as a Trusted Publisher on npmjs.com first
+# (npmjs.com package settings -> Trusted Publisher -> GitHub Actions).
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write # required for npm OIDC trusted publishing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Use a recent npm CLI (OIDC trusted publishing support)
+        run: npm install -g npm@^11.5.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Verify package.json version matches the release tag
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if [ "$TAG" != "$PKG_VERSION" ]; then
+            echo "Release tag ($GITHUB_REF_NAME) does not match package.json version ($PKG_VERSION)" >&2
+            exit 1
+          fi
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
